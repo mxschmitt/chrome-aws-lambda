@@ -6,6 +6,7 @@ import LambdaFS from 'lambdafs';
 import { join } from 'path';
 import { PuppeteerNode, Viewport } from 'puppeteer-core';
 import { URL } from 'url';
+import { getPlaywright, PlaywrightChromiumBrowser } from './playwright';
 
 if (/^AWS_Lambda_nodejs(?:10|12|14)[.]x$/.test(process.env.AWS_EXECUTION_ENV) === true) {
   if (process.env.FONTCONFIG_PATH === undefined) {
@@ -222,6 +223,10 @@ class Chromium {
 
       return require('puppeteer-core');
     }
+  }
+
+  static playwright(): PlaywrightChromiumBrowser {
+    return getPlaywright()
   }
 }
 
